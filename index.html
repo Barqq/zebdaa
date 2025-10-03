@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>زبده - محلل سياسات الخصوصية الحقيقي</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <h1 class="logo">زبده</h1>
+                    <p class="subtitle">محلل سياسات الخصوصية الحقيقي</p>
+                    <p class="description">خدمة web scraping فعلية - تحليل ذكي للنصوص - نتائج دقيقة من المحتوى الفعلي للموقع</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Input Section -->
+        <section class="input-section">
+            <div class="container">
+                <div class="input-card">
+                    <label for="urlInput" class="input-label">
+                        أدخل رابط سياسة الخصوصية:
+                    </label>
+                    <div class="input-group">
+                        <input 
+                            type="url" 
+                            id="urlInput" 
+                            class="url-input" 
+                            placeholder="https://example.com/privacy-policy"
+                            dir="ltr"
+                        >
+                        <button id="analyzeBtn" class="analyze-btn">
+                            <span class="btn-text">تحليل</span>
+                            <div class="loading-spinner hidden"></div>
+                        </button>
+                    </div>
+                    <div id="errorMessage" class="error-message hidden">
+                        يرجى إدخال رابط صحيح
+                    </div>
+                    <div class="help-text">
+                        <p>💡 جرب هذه الروابط كأمثلة:</p>
+                        <div class="example-links">
+                            <button class="example-link" data-url="https://www.google.com/policies/privacy/">Google Privacy Policy</button>
+                            <button class="example-link" data-url="https://www.facebook.com/privacy/policy">Facebook Privacy Policy</button>
+                            <button class="example-link" data-url="https://twitter.com/en/privacy">Twitter Privacy Policy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section hidden" id="resultsSection">
+            <div class="container">
+                <h2 class="results-title">تقرير التحليل الشامل</h2>
+                
+                <!-- URL Display -->
+                <div class="url-display">
+                    <strong>الموقع المحلل:</strong> <span id="analyzedUrl"></span>
+                </div>
+                
+                <!-- Overall Grade -->
+                <div class="grade-card" id="gradeCard">
+                    <div class="grade-display">
+                        <div class="grade-letter" id="gradeLetter">A</div>
+                        <div class="grade-info">
+                            <div class="grade-score" id="gradeScore">85%</div>
+                            <div class="grade-description" id="gradeDescription">جيد جداً - معظم المتطلبات مستوفاة</div>
+                        </div>
+                    </div>
+                    <div class="grade-details">
+                        <div class="risk-level" id="riskLevel">
+                            <span class="risk-label">مستوى المخاطر:</span>
+                            <span class="risk-value" id="riskValue">متوسط</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analysis Categories -->
+                <div class="analysis-grid" id="analysisGrid">
+                    <!-- Analysis cards will be dynamically inserted here -->
+                </div>
+
+                <!-- Content Stats -->
+                <div class="content-stats" id="contentStats">
+                    <h3>إحصائيات المحتوى:</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-label">إجمالي الكلمات:</span>
+                            <span class="stat-value" id="totalWords">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">الكلمات المفتاحية المكتشفة:</span>
+                            <span class="stat-value" id="keywordsFound">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">نسبة التطابق:</span>
+                            <span class="stat-value" id="matchRatio">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Findings -->
+                <div class="key-findings" id="keyFindings">
+                    <h3>النتائج الرئيسية:</h3>
+                    <div class="findings-list" id="findingsList">
+                        <!-- Key findings will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- New Analysis Button -->
+                <div class="action-section">
+                    <button id="newAnalysisBtn" class="new-analysis-btn">
+                        تحليل رابط آخر
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analysis Overlay -->
+        <div class="analysis-overlay hidden" id="analysisOverlay">
+            <div class="analysis-content">
+                <div class="analysis-icon">🔍</div>
+                <h3>جاري التحليل الذكي للمحتوى الفعلي...</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p class="analysis-step" id="analysisStep">بدء عملية التحليل...</p>
+                <div class="scraping-status" id="scrapingStatus">
+                    <div class="status-item">
+                        <span class="status-label">📡 جاري جلب البيانات:</span>
+                        <span class="status-value" id="fetchStatus">في الانتظار</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">📄 تحليل المحتوى:</span>
+                        <span class="status-value" id="parseStatus">في الانتظار</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">🧠 الذكاء الاصطناعي:</span>
+                        <span class="status-value" id="aiStatus">في الانتظار</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
